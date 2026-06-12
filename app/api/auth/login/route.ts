@@ -1,16 +1,8 @@
 import { NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
-import {PrismaBetterSqlite3 } from "@prisma/adapter-better-sqlite3";
+import { prisma } from "@/lib/prisma";
 import bcrypt from "bcryptjs";
 
-// Prisma 7 requires an adapter for SQLite
-const adapter = new PrismaBetterSqlite3({
-  url: "file:./prisma/dev.db",
-});
 
-const prisma = new PrismaClient({
-  adapter,
-});
 
 export async function POST(request: Request) {
   try {
@@ -36,11 +28,23 @@ export async function POST(request: Request) {
         { status: 401 }
       );
     }
+  const response = NextResponse.json({
+  success: true,
+  message: "Logged in successfully!",
+});
 
-    return NextResponse.json({
-      success: true,
-      message: "Logged in successfully!",
-    });
+  response.cookies.set("userId", user.id, {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === "production",
+    sameSite: "lax",
+    path: "/",
+    maxAge: 60 * 60 * 24, // 1 day
+  });
+
+return response;
+
+
+
   } catch (error) {
     console.error("LOGIN ERROR:", error);
 

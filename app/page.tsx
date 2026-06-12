@@ -17,7 +17,7 @@ export default function Home() {
                   <RegisterDropdown />
               </div>
           </div>
-          <h1 className="flex text-red-600 justify-center">Home</h1>
+
           <Body />
       </main>
           <section className="mt-auto">
