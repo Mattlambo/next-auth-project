@@ -1,17 +1,10 @@
-import Navbar from "@/components/Navbar";
-import Body from "@/components/Body";
-import Footer from "@/components/Footer";
+import SearchBar from "@/components/navigation/SearchBar";
 
-export default function Account()  {
-    return (
-        <>
-        <main className="bg-yellow-400">
-          <h1 className="border-b-5 h-15 flex justify-center items-center bg-yellow-400 text-black text-5xl">The Pilot</h1>
-            <Navbar />
-             <h1 className="flex text-red-600 justify-center">Favorites</h1>
-            <Body />
-        </main>
-            <Footer/>
-        </>
-    )
+export default function Favorites() {
+  return (
+    <main className="bg-black flex-1">
+
+               <h1 className="text-yellow-400 flex justify-start ml-5 mt-5 text-5xl">Favorites</h1>
+    </main>
+  );
 }

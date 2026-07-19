@@ -1,28 +1,12 @@
-import LoginDropdown from "@/components/LoginDropdown";
-import RegisterDropdown from "@/components/RegisterDropdown";
-import SearchBar from "@/components/SearchBar";
-import Footer from "@/components/Footer";
-import Body from "@/components/Body";
+import Trending from "@/components/shows/Trending";
+
 
 
 export default function Home() {
-    return (
-      <>
-      <main className="bg-yellow-400">
-          <h1 className="border-b-5 h-15 flex justify-center items-center bg-yellow-400 text-black text-5xl">The Pilot</h1>
-          <div className="flex bg-yellow-400 gap-6 h-16">
-              <div className="flex gap-1 ml-auto">
-                  <SearchBar />
-                  <LoginDropdown />
-                  <RegisterDropdown />
-              </div>
-          </div>
+  return (
+    <main className="bg-black flex-1 p-4">
+        <Trending />
 
-          <Body />
-      </main>
-          <section className="mt-auto">
-               <Footer />
-          </section>
-      </>
-  )
-};
+    </main>
+  );
+}

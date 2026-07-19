@@ -4,17 +4,32 @@ import bcrypt from "bcryptjs";
 
 export async function POST(request: Request) {
   try {
-    const { email, password } = await request.json();
+    const { name, email, password } = await request.json();
 
-    if (!email || !password) {
+    const trimmedName =
+      typeof name === "string" ? name.trim() : "";
+
+    const normalizedEmail =
+      typeof email === "string" ? email.trim().toLowerCase() : "";
+
+    if (!trimmedName || !normalizedEmail || !password) {
       return NextResponse.json(
-        { error: "Email and password are required" },
+        { error: "Name, email, and password are required" },
+        { status: 400 }
+      );
+    }
+
+    if (password.length < 8) {
+      return NextResponse.json(
+        { error: "Password must be at least 8 characters" },
         { status: 400 }
       );
     }
 
     const existingUser = await prisma.user.findUnique({
-      where: { email },
+      where: {
+        email: normalizedEmail,
+      },
     });
 
     if (existingUser) {
@@ -28,22 +43,34 @@ export async function POST(request: Request) {
 
     const user = await prisma.user.create({
       data: {
-        email,
+        name: trimmedName,
+        email: normalizedEmail,
         password: hashedPassword,
       },
     });
 
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         success: true,
-        message: "User registered successfully",
+        message: "Account registered successfully",
         user: {
           id: user.id,
+          name: user.name,
           email: user.email,
         },
       },
       { status: 201 }
     );
+
+    response.cookies.set("userId", user.id, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24,
+    });
+
+    return response;
   } catch (error) {
     console.error("REGISTER ERROR:", error);
 

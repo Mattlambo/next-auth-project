@@ -1,13 +1,11 @@
-import Navbar from "@/components/Navbar";
-import Body from "@/components/Body";
-import Footer from "@/components/Footer";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 import { prisma } from "@/lib/prisma";
+import Trending from "@/components/shows/Trending";
 
-export default async function Account() {
+export default async function AccountPage() {
   const cookieStore = await cookies();
-  const userId = cookieStore.get("userId");
+  const userId = cookieStore.get("userId")?.value;
 
   if (!userId) {
     redirect("/");
@@ -15,7 +13,11 @@ export default async function Account() {
 
   const user = await prisma.user.findUnique({
     where: {
-      id: userId.value,
+      id: userId,
+    },
+    select: {
+      name: true,
+      email: true,
     },
   });
 
@@ -24,22 +26,14 @@ export default async function Account() {
   }
 
   return (
-    <>
-      <main className="bg-yellow-400">
-        <h1 className="border-b-5 h-15 flex justify-center items-center bg-yellow-400 text-black text-5xl">
-          The Pilot
-        </h1>
+    <main className="flex-1 bg-black p-6 text-white">
+      <h1 className="mb-2 text-3xl text-yellow-400">
+        Welcome, {user.name}
+      </h1>
 
-        <Navbar />
 
-        <h1 className="flex justify-end mr-5 text-lg">
-          {user.email}
-        </h1>
 
-        <Body />
-      </main>
-
-      <Footer />
-    </>
+      <Trending />
+    </main>
   );
 }
