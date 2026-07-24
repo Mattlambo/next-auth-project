@@ -1,14 +1,27 @@
 import Link from "next/link";
-import { cookies } from "next/headers";
+import { cookies } from "next/headers"; //check user's browser cookies before sending back protected routes or API response
 
 import SearchBar from "@/components/navigation/SearchBar";
 import AccountButton from "@/components/auth/AccountButton";
-import AccountDropDown from "@/components/auth/AccountDropdown";
+import AccountDropdownButton from "@/components/auth/AccountDropdownButton";
+import { prisma } from "@/lib/prisma";  //allows app to access database on backend
 
-export default async function MainNav() {
-  const cookieStore = await cookies();
+
+
+export default async function MainNav() {  //declares/exports a server component function with destructuring and Typescript typing
+  const cookieStore = await cookies();  //fetches cookie store
   const userId = cookieStore.get("userId")?.value;
   const isLoggedIn = Boolean(userId);
+
+  const user = userId ? await prisma.user.findUnique({  //ternary operator. If userID exist, finds that table and selects name, if doesn't exist returns null
+          where: {
+              id: userId,
+          },
+          select: {
+              name: true,
+          },
+      })
+      : null;
 
   return (
     <div className="grid h-30 grid-cols-[225px_auto_1fr_auto] items-center gap-8 border-b-3 border-black bg-yellow-400 px-5">
@@ -46,8 +59,8 @@ export default async function MainNav() {
       </div>
 
       <div className="flex items-center">
-        {isLoggedIn ? <AccountDropDown /> : <AccountButton />}
+        {isLoggedIn ? <AccountDropdownButton name={user?.name ?? "user"} /> : <AccountButton />}
       </div>
     </div>
   );
-}
+}  //like an if else statement. ternary operator. condition ? ifTrue :ifFalse

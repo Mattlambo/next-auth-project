@@ -2,9 +2,7 @@
 
 import { useState } from "react";
 
-
 export default function RegisterForm() {
-
 
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -82,7 +80,7 @@ export default function RegisterForm() {
           value={name}
           onChange={(event) => setName(event.target.value)}
           className="rounded border border-gray-300 bg-white p-2 text-sm text-black focus:outline-black"
-          placeholder="Matt"
+          placeholder="*******"
         />
       </div>
 

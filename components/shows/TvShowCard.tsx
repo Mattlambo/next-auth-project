@@ -24,6 +24,7 @@ type ShowCardProps = {
 export default function ShowCard({ show }: ShowCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isSavingFavorite, setIsSavingFavorite] = useState(false);
   const [details, setDetails] = useState<ShowDetails | null>(null);
 
   const year = show.first_air_date?.slice(0, 4) || "Unknown";
@@ -42,6 +43,69 @@ export default function ShowCard({ show }: ShowCardProps) {
     getDetails();
   }, [show.id]);
 
+
+  useEffect(() => {
+  async function checkFavorite() {
+    try {
+      const response = await fetch(
+        `/api/favorites?tmdbId=${show.id}`
+      );
+
+      if (!response.ok) return;
+
+      const data = await response.json();
+      setIsFavorite(data.isFavorite);
+    } catch (error) {
+      console.error("Unable to check favorite:", error);
+    }
+  }
+
+  checkFavorite();
+}, [show.id]);
+
+  async function handleFavorite(
+  event: React.MouseEvent<HTMLButtonElement>
+) {
+  event.stopPropagation();
+
+  if (isSavingFavorite) return;
+
+  setIsSavingFavorite(true);
+
+  try {
+    const response = await fetch("/api/favorites", {
+      method: isFavorite ? "DELETE" : "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        tmdbId: show.id,
+        name: show.name,
+        posterPath: show.poster_path,
+        overview: show.overview,
+        firstAirDate: show.first_air_date,
+        voteAverage: show.vote_average,
+      }),
+    });
+
+    const data = await response.json();
+
+    if (response.status === 401) {
+      window.location.href = "/account";
+      return;
+    }
+
+    if (!response.ok) {
+      throw new Error(data.error ?? "Unable to update favorite.");
+    }
+
+    setIsFavorite((current) => !current);
+  } catch (error) {
+    console.error("Favorite error:", error);
+  } finally {
+    setIsSavingFavorite(false);
+  }
+}
   return (
     <div
       onClick={() => setIsFlipped(!isFlipped)}
@@ -52,19 +116,23 @@ export default function ShowCard({ show }: ShowCardProps) {
         hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-400/30 m-5
       "
     >
-      <button
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsFavorite(!isFavorite);
-        }}
-        className="absolute right-3 top-3 z-10 text-2xl transition hover:scale-110"
-      >
-        {isFavorite ? (
-          <FaHeart className="text-red-500" />
-        ) : (
-          <FaRegHeart className="text-white" />
-        )}
-      </button>
+     <button
+  type="button"
+  onClick={handleFavorite}
+  disabled={isSavingFavorite}
+  aria-label={isFavorite ? "Remove from favorites" : "Add to favorites"}
+  className="
+    absolute right-3 top-3 z-10 cursor-pointer text-2xl
+    transition hover:scale-110
+    disabled:cursor-not-allowed disabled:opacity-50
+  "
+>
+  {isFavorite ? (
+    <FaHeart className="text-red-500" />
+  ) : (
+    <FaRegHeart className="text-white" />
+  )}
+</button>
 
       <div className="absolute left-3 top-3 z-10">
         <p className="rounded-full bg-yellow-400 px-3 py-1 text-sm font-semibold text-black">

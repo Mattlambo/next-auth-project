@@ -27,9 +27,6 @@ export default async function AccountPage() {
 
   return (
     <main className="flex-1 bg-black p-6 text-white">
-      <h1 className="mb-2 text-3xl text-yellow-400">
-        Welcome, {user.name}
-      </h1>
 
 
 

@@ -1,11 +1,15 @@
 "use client";
 
+
 import { useState } from "react";
 
 import AccountMenu from "@/components/auth/AccountMenu";
 
+type AccountDropDownProps = {
+    name: string;
+};
 
-export default function AccountDropDown() {
+export default function AccountDropdownButton({name,}: AccountDropDownProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
@@ -16,9 +20,9 @@ export default function AccountDropDown() {
         onClick={() => setIsOpen((current) => !current)}
         aria-expanded={isOpen}
         aria-haspopup="menu"
-        className="flex justify-center mr-auto w-20 rounded border-1 border-black bg-black px-3 py-1 text-yellow-400 hover:bg-yellow-400 hover:text-black"
+        className="cursor-pointer flex justify-center mr-auto min-w-20 h-8 rounded border-1 border-black bg-yellow-400 text px-3 py-1 hover:bg-black hover:text-yellow-400 "
       >
-        User
+          {name}
       </button>
 
       {isOpen && (

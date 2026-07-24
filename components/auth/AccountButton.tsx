@@ -37,7 +37,7 @@ export default function AccountButton() {
         onClick={() => setIsOpen((current) => !current)}
         aria-expanded={isOpen}
         aria-haspopup="menu"
-        className="flex justify-center w-20 rounded border border-black bg-black px-3 py-1 text-yellow-400 hover:bg-yellow-400 hover:text-black"
+        className="cursor-pointer flex justify-center w-20 rounded border border-black px-3 py-1 text-black"
       >
         Account
       </button>
