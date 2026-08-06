@@ -12,6 +12,7 @@ model User {
   email    String @unique
   password String
   favorites Favorite[]
+  watching Watching[]
 }
 
 model Favorite {
@@ -23,6 +24,22 @@ model Favorite {
   firstAirDate  String?
   voteAverage   Float?
   createdAt     DateTime @default(now())
+
+  userId String
+  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, tmdbId])
+}
+
+model Watching {
+  id           String   @id @default(uuid())
+  tmdbId       Int
+  name         String
+  posterPath   String?
+  overview     String?
+  firstAirDate String?
+  voteAverage  Float?
+  createdAt    DateTime @default(now())
 
   userId String
   user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)

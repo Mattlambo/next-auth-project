@@ -22,18 +22,13 @@ export default function AccountMenu() {
   <div className="border-t border-yellow-400/40" />
 
   <Link
-    href="/account"
+    href="/accountinfo"
     className="block w-full px-4 py-3 text-left text-yellow-400 hover:bg-yellow-400 hover:text-black focus:bg-yellow-400 focus:text-black"
   >
     Account Info
   </Link>
 
-  <Link
-    href="/settings"
-    className="block w-full px-4 py-3 text-left text-yellow-400 hover:bg-yellow-400 hover:text-black focus:bg-yellow-400 focus:text-black"
-  >
-    Settings
-  </Link>
+
           <Logout />
 
 </div>

@@ -13,15 +13,6 @@ type Favorite = {
   voteAverage: number | null;
 };
 
-type Show = {
-  id: number;
-  name: string;
-  overview: string;
-  poster_path: string | null;
-  first_air_date: string;
-  vote_average: number;
-};
-
 export default function FavoritesPage() {
   const [favorites, setFavorites] = useState<Favorite[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -33,20 +24,20 @@ export default function FavoritesPage() {
         const response = await fetch("/api/favorites");
 
         if (!response.ok) {
-          const errorData = await response.json();
-
-          throw new Error(
-            errorData.error ||
-              `Request failed with status ${response.status}`
-          );
+          let errorMessage = `Request failed with status ${response.status}`;
+          try {
+            const errorData = await response.json();
+            if (errorData?.error) errorMessage = errorData.error;
+          } catch {
+            // fallback if error response is not valid JSON
+          }
+          throw new Error(errorMessage);
         }
 
         const data: Favorite[] = await response.json();
-
         setFavorites(data);
       } catch (error) {
         console.error("Favorites page error:", error);
-
         setError(
           error instanceof Error
             ? error.message
@@ -60,14 +51,10 @@ export default function FavoritesPage() {
     loadFavorites();
   }, []);
 
-  const shows: Show[] = favorites.map((favorite) => ({
-    id: favorite.tmdbId,
-    name: favorite.name,
-    overview: favorite.overview ?? "No overview available.",
-    poster_path: favorite.posterPath,
-    first_air_date: favorite.firstAirDate ?? "",
-    vote_average: favorite.voteAverage ?? 0,
-  }));
+  // Remove unfavorited show from state immediately
+  const handleRemove = (tmdbId: number) => {
+    setFavorites((current) => current.filter((item) => item.tmdbId !== tmdbId));
+  };
 
   if (isLoading) {
     return (
@@ -91,16 +78,17 @@ export default function FavoritesPage() {
         My Favorites
       </h1>
 
-      {shows.length === 0 ? (
+      {favorites.length === 0 ? (
         <p className="text-center text-gray-300">
           You have not added any favorites yet.
         </p>
       ) : (
         <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {shows.map((show) => (
+          {favorites.map((favorite) => (
             <ShowCard
-              key={show.id}
-              show={show}
+              key={favorite.id}
+              show={favorite}
+              onRemoveFromFavorite={handleRemove}
             />
           ))}
         </div>

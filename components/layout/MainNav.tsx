@@ -46,12 +46,7 @@ export default async function MainNav() {  //declares/exports a server component
           Trending
         </Link>
 
-        <Link
-          href="/discover"
-          className="text-lg text-black hover:text-2xl"
-        >
-          Discover
-        </Link>
+
       </div>
 
       <div className="flex justify-end">

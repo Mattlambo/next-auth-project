@@ -39,7 +39,7 @@ export default function SearchPage() {
   return (
     <>
 
-            <h1 className="text-yellow-400 text-5xl p-6 bg-black">
+            <h1 className="flex justify-start text-yellow-400 text-3xl ml-5 mb-10 mt-5">
         Search Results
       </h1>
 

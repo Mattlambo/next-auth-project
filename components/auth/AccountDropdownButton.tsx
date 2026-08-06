@@ -1,28 +1,45 @@
 "use client";
 
-
-import { useState } from "react";
-
+import { useEffect, useRef, useState } from "react";
 import AccountMenu from "@/components/auth/AccountMenu";
 
 type AccountDropDownProps = {
-    name: string;
+  name: string;
 };
 
-export default function AccountDropdownButton({name,}: AccountDropDownProps) {
+export default function AccountDropdownButton({ name }: AccountDropDownProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    }
+
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isOpen]);
 
   return (
-    <div className="relative inline-block">
-
+    <div ref={containerRef} className="relative inline-block">
       <button
         type="button"
         onClick={() => setIsOpen((current) => !current)}
         aria-expanded={isOpen}
         aria-haspopup="menu"
-        className="cursor-pointer flex justify-center mr-auto min-w-20 h-8 rounded border-1 border-black bg-yellow-400 text px-3 py-1 hover:bg-black hover:text-yellow-400 "
+        className="cursor-pointer flex justify-center mr-auto min-w-20 h-8 rounded border-1 border-black bg-yellow-400 px-3 py-1 hover:bg-black hover:text-yellow-400"
       >
-          {name}
+        {name}
       </button>
 
       {isOpen && (
