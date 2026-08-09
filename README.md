@@ -1,36 +1,198 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Why I Built This
 
-## Getting Started
+I built TV Fanatic to challenge myself to create a full-stack application that goes beyond displaying data from an external API. I wanted to build an application where users could create accounts, interact with TV show data, and maintain their own personalized collections.
 
-First, run the development server:
+The project gave me the opportunity to bring together many of the skills I've been developing—including React, Next.js, TypeScript, API integration, authentication, database design, and persistent user data—into a single application built from the ground up.
+
+# TV Fanatic
+
+A full-stack TV show tracking application built with **Next.js**, **TypeScript**, **Prisma**, and **Tailwind CSS**. Browse trending and top-rated television series, search for shows using the TMDB API, and create a personalized account to save your favorite shows and maintain a watching list.
+
+---
+
+## Features
+
+### Authentication
+
+* User registration
+* Secure login and logout
+* Protected account pages
+* Cookie-based authentication
+
+### TV Discovery
+
+* Search for TV shows
+* Browse Trending shows
+* Browse Top Rated shows
+* View show information including:
+
+  * Poster
+  * Rating
+  * Overview
+  * First air date
+  * Number of seasons
+  * Current status
+
+### Personal Library
+
+* Add shows to Favorites
+* Remove shows from Favorites
+* Add shows to Watching
+* Remove shows from Watching
+* Personalized data stored for each user
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* Next.js (App Router)
+* React
+* TypeScript
+* Tailwind CSS
+
+### Backend
+
+* Next.js API Routes
+* Prisma ORM
+* SQLite
+* bcryptjs
+
+### External APIs
+
+* TMDB (The Movie Database) API
+
+---
+
+## Project Structure
+
+```
+app/
+├── api/
+│   ├── auth/
+│   ├── favorites/
+│   ├── watching/
+│   └── tv/
+├── account/
+├── favorites/
+├── watching/
+├── top-rated/
+└── page.tsx
+
+components/
+├── auth/
+├── shows/
+└── navigation/
+
+prisma/
+└── schema.prisma
+```
+
+---
+
+## Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/YOUR_USERNAME/YOUR_REPOSITORY.git
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Create a `.env` file with your environment variables:
+
+```env
+DATABASE_URL="file:./dev.db"
+
+TMDB_API_KEY=YOUR_API_KEY
+TMDB_ACCESS_TOKEN=YOUR_ACCESS_TOKEN
+```
+
+Run Prisma migrations:
+
+```bash
+npx prisma migrate dev
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Screenshots
 
-To learn more about Next.js, take a look at the following resources:
+Add screenshots here, for example:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+* Home Page
+* Search Results
+* Show Details
+* Favorites
+* Watching
+* Login/Register
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## What I Learned
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+This project helped me gain experience with:
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+* Building a full-stack application using Next.js App Router
+* Creating REST API endpoints
+* User authentication and authorization
+* Cookie-based sessions
+* Database design with Prisma
+* Working with relational data
+* Consuming third-party APIs
+* TypeScript in a production-style application
+* Component organization and reusable UI
+* Git and version control
+
+---
+
+## Future Improvements
+
+* User profile page
+* Pagination for search results
+* Filtering by genre
+* Recently viewed shows
+* Light/Dark theme toggle
+* Improved mobile responsiveness
+* Unit and integration tests
+* PostgreSQL deployment for production
+
+---
+
+## Built With
+
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* Prisma
+* SQLite
+* TMDB API
+
+---
+
+## Acknowledgements
+
+This application uses data provided by **The Movie Database (TMDB)**.
+
+https://www.themoviedb.org/
+
+This product uses the TMDB API but is not endorsed or certified by TMDB.
