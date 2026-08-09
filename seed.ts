@@ -13,6 +13,7 @@ async function main() {
     where: { email: 'test@example.com' },
     update: {},
     create: {
+      name: "Test User",
       email: 'test@example.com',
       password: hashedPassword,
     },
