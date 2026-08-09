@@ -8,6 +8,11 @@ The project gave me the opportunity to bring together many of the skills I've be
 
 A full-stack TV show tracking application built with **Next.js**, **TypeScript**, **Prisma**, and **Tailwind CSS**. Browse trending and top-rated television series, search for shows using the TMDB API, and create a personalized account to save your favorite shows and maintain a watching list.
 
+
+<img width="1888" height="743" alt="image" src="https://github.com/user-attachments/assets/4fbd7fd2-acc8-49ee-813f-13bdf0c14fc9" />
+<img width="1887" height="747" alt="image" src="https://github.com/user-attachments/assets/57f39331-5635-4592-b7ee-d5edb8fd5b14" />
+
+
 ---
 
 ## Features
