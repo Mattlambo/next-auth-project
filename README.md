@@ -5,7 +5,7 @@ I built TV Fanatic to challenge myself to create a full-stack application that g
 The project gave me the opportunity to bring together many of the skills I've been developing—including React, Next.js, TypeScript, API integration, authentication, database design, and persistent user data—into a single application built from the ground up.
 
 # TV Fanatic
-link: https://next-auth-project-gfpp9n2f9-matt-lamberts-projects-5e480e01.vercel.app/favs
+link: https://next-auth-project-gfpp9n2f9-matt-lamberts-projects-5e480e01.vercel.app/
 
 A full-stack TV show tracking application built with **Next.js**, **TypeScript**, **Prisma**, and **Tailwind CSS**. Browse trending and top-rated television series, search for shows using the TMDB API, and create a personalized account to save your favorite shows and maintain a watching list.
 
