@@ -20,7 +20,8 @@ export default function RegisterButton() {
         </button>
 
         {isOpen && (
-          <div className="absolute right-0 top-full mt-2 z-50 w-80 bg-white p-6 shadow-xl rounded-lg border border-yellow-400">
+          <div className="absolute left-1/2 top-full z-50 mt-2 w-[calc(100vw-2rem)] max-w-sm -translate-x-1/2
+              rounded-lg border border-yellow-400 bg-white p-6 shadow-xl md:left-auto md:right-0 md:w-80 md:translate-x-0">
           <RegisterForm />
           </div>
         )}
