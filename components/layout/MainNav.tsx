@@ -24,28 +24,27 @@ export default async function MainNav() {  //declares/exports a server component
       : null;
 
   return (
-    <div className="grid h-30 grid-cols-[225px_auto_1fr_auto] items-center gap-8 border-b-3 border-black bg-yellow-400 px-5">
+    <div className="grid grid-cols-1 gap-3 md:grid-cols-[auto_1fr_auto] lg:grid-cols-[225px_auto_1fr_auto] h-30 items-center gap-4 bg-yellow-400 px-5">
       <div>
         <h1 className="ml-5 flex h-20 w-45 items-center justify-center rounded-lg bg-black text-3xl text-yellow-400">
           TV Fanatic
         </h1>
       </div>
 
-      <div className="ml-10 flex items-center gap-4">
-        <Link
-          href="/top-rated"
-          className="text-lg text-black hover:text-2xl"
-        >
-          Top Rated
-        </Link>
-
-        <Link
+      <div className="ml-10 flex items-center gap-4 mb-2">
+          <Link
           href="/"
           className="text-lg text-black hover:text-2xl"
         >
           Trending
         </Link>
 
+          <Link
+          href="/top-rated"
+          className="text-lg text-black hover:text-2xl"
+        >
+          Top Rated
+        </Link>
 
       </div>
 
@@ -58,4 +57,4 @@ export default async function MainNav() {  //declares/exports a server component
       </div>
     </div>
   );
-}  //like an if else statement. ternary operator. condition ? ifTrue :ifFalse
+}

@@ -1,9 +1,8 @@
-//Imports tools for reading cookies, sending JSON HTTP responses and accessing prisma database
+
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 
-//defines JSON shape
 type WatchingRequest = {
   tmdbId: number;
   name: string;
@@ -13,7 +12,7 @@ type WatchingRequest = {
   voteAverage?: number | null;
 };
 
-//POST HANDLER (Add or Update a show)
+
 export async function POST(request: Request) {
   try {
     const cookieStore = await cookies();
@@ -76,7 +75,7 @@ export async function POST(request: Request) {
   }
 }
 
-//DELETE HANDLER (delete a show)
+
 export async function DELETE(request: Request) {
   try {
     const cookieStore = await cookies();
@@ -131,7 +130,7 @@ export async function DELETE(request: Request) {
   }
 }
 
-//Get handler (fetch list or check single status)
+
 export async function GET(request: Request) {
   try {
     const cookieStore = await cookies();

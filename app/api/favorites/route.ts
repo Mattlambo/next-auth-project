@@ -127,7 +127,7 @@ export async function GET(request: Request) {
     const { searchParams } = new URL(request.url);
     const tmdbIdParam = searchParams.get("tmdbId");
 
-    // Return all favorites for the Favorites page
+
     if (!tmdbIdParam) {
       const favorites = await prisma.favorite.findMany({
         where: {
@@ -138,7 +138,6 @@ export async function GET(request: Request) {
       return NextResponse.json(favorites);
     }
 
-    // Check if a single show is favorited
     const tmdbId = Number(tmdbIdParam);
 
     if (Number.isNaN(tmdbId)) {

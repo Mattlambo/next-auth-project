@@ -3,6 +3,7 @@
 import ShowCard from "@/components/shows/TvShowCard";
 import { useEffect, useState } from "react";
 
+//defined object type named Show
 type Show = {
   id: number;
   name: string;

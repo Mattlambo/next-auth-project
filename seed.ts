@@ -1,4 +1,6 @@
-// @ts-ignore
+// @ts-expect-error -- Seed script uses a Node-specific import
+
+
 import { PrismaClient } from '@prisma/client';
 import bcrypt from 'bcryptjs';
 

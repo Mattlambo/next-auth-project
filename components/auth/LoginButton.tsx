@@ -12,7 +12,7 @@ export default function LoginButton() {
       <div className="flex justify-center relative">
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className= "bg-black w-full text-yellow-400 px-4 py-1 hover:bg-yellow-400 hover:text-black"
+          className= "bg-black w-full text-yellow-400 px-4 py-1 cursor-pointer hover:bg-yellow-400 hover:text-black"
         >
          Login
         </button>

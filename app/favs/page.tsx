@@ -29,7 +29,7 @@ export default function FavoritesPage() {
             const errorData = await response.json();
             if (errorData?.error) errorMessage = errorData.error;
           } catch {
-            // fallback if error response is not valid JSON
+
           }
           throw new Error(errorMessage);
         }
@@ -51,7 +51,7 @@ export default function FavoritesPage() {
     loadFavorites();
   }, []);
 
-  // Remove unfavorited show from state immediately
+
   const handleRemove = (tmdbId: number) => {
     setFavorites((current) => current.filter((item) => item.tmdbId !== tmdbId));
   };

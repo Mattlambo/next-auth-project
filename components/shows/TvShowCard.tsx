@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { FaHeart, FaRegHeart, FaTv } from "react-icons/fa";
+import Image from "next/image";
+
+
+
 
 export type ShowCardItem = {
   id: number | string;
@@ -33,6 +38,8 @@ export default function ShowCard({
   onRemoveFromFavorite,
 }: ShowCardProps) {
   const [isFlipped, setIsFlipped] = useState(false);
+
+  const router = useRouter();
 
   // Favorite states
   const [isFavorite, setIsFavorite] = useState(false);
@@ -124,7 +131,8 @@ export default function ShowCard({
       const data = await response.json();
 
       if (response.status === 401) {
-        window.location.href = "/account";
+        router.push("/account");
+        router.refresh();
         return;
       }
 
@@ -168,7 +176,8 @@ export default function ShowCard({
       const data = await response.json();
 
       if (response.status === 401) {
-        window.location.href = "/account";
+        router.push("/account");
+        router.refresh();
         return;
       }
 
@@ -210,10 +219,13 @@ export default function ShowCard({
         <>
           <div className="mt-12 overflow-hidden rounded">
             {posterPath ? (
-              <img
-                src={`https://image.tmdb.org/t/p/w200${posterPath}`}
+              <Image
+                src={`https://image.tmdb.org/t/p/w200${show.poster_path}`}
                 alt={show.name}
-                className="h-[280px] w-full object-cover transition-transform duration-200 hover:scale-105"
+                width={500}
+                height={750}
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 250px"
+                className="h-full w-full object-cover transition-transform duration-200 hover:scale-105"
               />
             ) : (
               <div className="flex h-[280px] items-center justify-center bg-neutral-800 text-sm text-gray-400">

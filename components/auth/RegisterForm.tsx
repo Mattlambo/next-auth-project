@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useRouter } from "next/navigation";
 
 export default function RegisterForm() {
 
@@ -9,6 +10,7 @@ export default function RegisterForm() {
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
   const [error, setError] = useState("");
+  const router = useRouter();
 
   async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -49,7 +51,9 @@ export default function RegisterForm() {
         return;
       }
 
-      window.location.href = "/account";
+      router.push("/account");
+      router.refresh();
+
     } catch {
       setError("Unable to connect to the server");
     }

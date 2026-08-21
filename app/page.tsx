@@ -5,6 +5,7 @@ export default function Home() {
     <main className="bg-black flex-1">
         <Trending />
 
+
     </main>
   );
 }
