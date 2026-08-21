@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import ShowCard from "@/components/shows/TvShowCard";
 
+
 type Watching = {
   id: string;
   tmdbId: number;
@@ -68,28 +69,41 @@ export default function WatchingPage() {
       </p>
     );
   }
+return (
+  <section className="min-h-screen bg-black">
+    <h1 className="px-4 pt-5 text-3xl font-bold text-yellow-400 sm:px-6">
+      Watching List
+    </h1>
 
-  return (
-    <section className="min-h-screen bg-black px-6 py-8">
-      <h1 className="mb-8 text-center text-3xl font-bold text-yellow-400">
-        Watching List
-      </h1>
-
-      {watching.length === 0 ? (
-        <p className="text-center text-gray-300">
-          You have not added any shows to your watching list.
-        </p>
-      ) : (
-        <div className="grid grid-cols-1 justify-items-center gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
-          {watching.map((item) => (
-            <ShowCard
-              key={item.id}
-              show={item}
-              onRemoveFromWatching={handleRemove}
-            />
-          ))}
-        </div>
-      )}
-    </section>
-  );
-}
+    {watching.length === 0 ? (
+      <p className="px-4 py-8 text-center text-gray-300 sm:px-6">
+        You have not added any shows to your watching list.
+      </p>
+    ) : (
+      <div
+        className="
+          grid grid-cols-2 gap-3 px-4 py-6
+          sm:grid-cols-3 sm:px-6
+          md:grid-cols-4
+          lg:grid-cols-5
+          xl:grid-cols-6
+        "
+      >
+        {watching.map((item) => (
+          <ShowCard
+            key={item.id}
+            show={{
+            id: item.tmdbId,
+            name: item.name,
+            overview: item.overview ?? "",
+            poster_path: item.posterPath,
+            first_air_date: item.firstAirDate ?? '',
+            vote_average: item.voteAverage ?? 0,
+            }}
+            onRemoveFromWatching={handleRemove}
+          />
+        ))}
+      </div>
+    )}
+  </section>
+)}

@@ -203,7 +203,7 @@ export default function ShowCard({
     <div
       onClick={() => setIsFlipped(!isFlipped)}
       className="
-        relative m-5 flex h-[450px] w-[220px] cursor-pointer flex-col
+        relative flex h-[450px] w-full min-w-0 [perspective-1000px] cursor-pointer flex-col
         overflow-hidden rounded-xl border border-yellow-400 bg-neutral-950 p-2 text-white
         transition-all duration-200
         hover:-translate-y-1 hover:shadow-xl hover:shadow-yellow-400/30
@@ -220,7 +220,7 @@ export default function ShowCard({
           <div className="mt-12 overflow-hidden rounded">
             {posterPath ? (
               <Image
-                src={`https://image.tmdb.org/t/p/w200${show.poster_path}`}
+                src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
                 alt={show.name}
                 width={500}
                 height={750}

@@ -37,16 +37,23 @@ export default function SearchResults() {
   }, [query]);
 
   return (
-    <>
-      <h1 className="flex justify-start text-yellow-400 text-3xl ml-5 mb-10 mt-5">
-        Search Results
-      </h1>
+  <section>
+    <h1 className="px-4 pt-5 text-3xl text-yellow-400 sm:px-6">
+      Trending
+    </h1>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-2 p-6">
-        {shows.map((show) => (
-          <ShowCard key={show.id} show={show} />
-        ))}
-      </div>
-    </>
-  );
-}
+    <div
+      className="
+        grid grid-cols-2 gap-3 px-4 py-6
+        sm:grid-cols-3 sm:px-6
+        md:grid-cols-4
+        lg:grid-cols-5
+        xl:grid-cols-6
+      "
+    >
+      {shows.map((show) => (
+        <ShowCard key={show.id} show={show} />
+      ))}
+    </div>
+  </section>
+)}
