@@ -39,7 +39,7 @@ export default function SearchResults() {
   return (
   <section>
     <h1 className="px-4 pt-5 text-3xl text-yellow-400 sm:px-6">
-      Trending
+      Search
     </h1>
 
     <div

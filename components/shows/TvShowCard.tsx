@@ -217,7 +217,7 @@ export default function ShowCard({
 
       {!isFlipped ? (
         <>
-          <div className="mt-12 overflow-hidden rounded">
+          <div className="mt-10 overflow-hidden rounded">
             {posterPath ? (
               <Image
                 src={`https://image.tmdb.org/t/p/w500${show.poster_path}`}
@@ -225,7 +225,7 @@ export default function ShowCard({
                 width={500}
                 height={750}
                 sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 250px"
-                className="h-full w-full object-cover transition-transform duration-200 hover:scale-105"
+                className="h-full w-full m-2 object-contain transition-transform duration-200 hover:scale-105"
               />
             ) : (
               <div className="flex h-[280px] items-center justify-center bg-neutral-800 text-sm text-gray-400">
