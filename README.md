@@ -138,21 +138,6 @@ Open:
 http://localhost:3000
 ```
 
----
-
-## Screenshots
-
-Add screenshots here, for example:
-
-* Home Page
-* Search Results
-* Show Details
-* Favorites
-* Watching
-* Login/Register
-
----
-
 ## What I Learned
 
 This project helped me gain experience with:
@@ -179,7 +164,7 @@ This project helped me gain experience with:
 * Light/Dark theme toggle
 * Improved mobile responsiveness
 * Unit and integration tests
-* PostgreSQL deployment for production
+
 
 ---
 
