@@ -190,7 +190,7 @@ This project helped me gain experience with:
 * TypeScript
 * Tailwind CSS
 * Prisma
-* SQLite
+* PostgreSQL
 * TMDB API
 
 ---
