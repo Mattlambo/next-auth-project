@@ -5,7 +5,8 @@ A full-stack TV show tracking app built with **Next.js**, **TypeScript**, **Pris
 **Live demo:** https://next-auth-project-vert.vercel.app/
 **Demo login:** `user1@gmail.com` / `password123` *(or register your own account)*
 
-![TV Fanatic home page](YOUR_HOME_PAGE_SCREENSHOT_URL)
+<img width="1900" height="917" alt="image" src="https://github.com/user-attachments/assets/78db8a63-a6cb-4c7c-9c0d-eac4bc555f8a" />
+
 
 ---
 
